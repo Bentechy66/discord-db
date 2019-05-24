@@ -52,8 +52,8 @@ pin_type number can be:
 `classes.record`
 Represents a record in a table
 Properties:
-`record.table`: A Table object representing the Table this record belongs to
-`record.created_at`: An ISO8601 timestamp of when the record was created
+`record.table`: A Table object representing the Table this record belongs to.
+`record.created_at`: An ISO8601 timestamp of when the record was created.
 `record.updated_at`: An ISO8601 timestamp of when the record was updated.
 `record.data`: A dictionary containing the data held in the record. Example: 
 ```
@@ -63,8 +63,26 @@ Properties:
 }
 ```
 Methods:
-`record.update_field("field_name", "new_field_value")`: Updates the specified field and sets it to the new value
+`record.update_field("field_name", "new_field_value")`: Updates the specified field and sets it to the new value. Returns the new Record instance for call chaining
 
 ### Table
 `classes.table`
 Represents a Table containing Records in a Database
+Properties:
+`table.database`: A Database object representing the Database this Table belongs to.
+`table.created_at`: An ISO8601 timestamp of when the Table was created.
+`table.records`: A list of Record objects from the Table
+Methods:
+`table.get_records(field_name="field_value", field_name_2="second_filter_value")`: Finds records from the Table with the specified filters. Returns a Record object.
+`table.update_records("field_name_to_update", "new_value", field_name="field_value", field_name_2="second_filter_value")`: Updates the specified field name to the new value. kwargs are filters. Can update multiple records. Returns a Record object.
+`table.create_record(field_value_1, field_value_2...)`: Creates a new Record in a Table. Returns a Record object. Expects the same amount of positional args as there are fields in a database, with each posarg corresponding to a field.
+
+### Database
+`classes.database`
+Represents a Database
+Properties:
+`database.created_at`: An ISO8601 timestamp of when the Database was created.
+`database.tables`: A list of Table objects, one for each Table in the database
+Methods:
+`database.create_table("name", "colon:separated:list:of:fields")`: Creates a new Table in the database
+`database.remove_table("name")`: Deletes a Table permanently
