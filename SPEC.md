@@ -103,5 +103,5 @@ Properties:
  - `database.created_at`: An ISO8601 timestamp of when the Database was created.
  - `database.tables`: A list of Table objects, one for each Table in the database
 Methods:
- - `database.create_table("name", "colon:separated:list:of:fields")`: Creates a new Table in the database
+ - `database.create_table("name", ["list", "of", "field", "names"])`: Creates a new Table in the database
  - `database.remove_table("name")`: Deletes a Table permanently
