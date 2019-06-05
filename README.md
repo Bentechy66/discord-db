@@ -9,8 +9,8 @@ import discorddb
 
 guild_db = discorddb.connect(bot_token, guild_id)
 
-guild_db.create_database()
-guild_db.x()
+guild_db.create_database(db_name)
+guild_db.commit()
 [...]
 ```
 
