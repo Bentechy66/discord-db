@@ -32,7 +32,7 @@ class DiscordInterface:
         auth_header = {
             "Authorization": self.discord_token
         }
-        r = requests.post(base_url.format(endpoint), data=data, headers=auth_header)  # Make the request to discord
+        r = requests.post(base_url.format(endpoint), json=data, headers=auth_header)  # Make the request to discord
 
         if r.status_code == 404:
             raise Discord404Exception(f"The Discord Gateway returned a 404 response. \nResponse: {r.text}")

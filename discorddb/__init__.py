@@ -4,4 +4,4 @@ Ever
 Seriously
 Consider yourself warned'''
 
-from classes import record, table, database
+from .classes import *
