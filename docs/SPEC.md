@@ -58,21 +58,36 @@ Their structure is the following:
 [Rest of message is data]
 ```
 pin_type number can be:
- - 0: This is for a table defenition
+ - 0: This is for a table definition
 
 ## Library Classes
 *The following section, as with the rest of this document, is still under development. Static properties may be changed to get_x() methods*
+### DiscordDB
+`main.DiscordDB`
+
+The main DiscordDB class.
+
+Properties:
+ - `DiscordDB.discord_token`: The Discord token used to initialise the DB
+ - `DiscordDB.guild_id`: The ID of the Guild used to initialise the DB
+Methods:
+ - `DiscordDB.create_database("name")"`: Creates an empty database
+ - `DiscordDB.delete_database("name")`: Irreversibly deletes a database
+ - `DiscordDB.get_databases()`: Gets a list of Database objects
+ - `DiscordDB.get_guild()`: Returns a Guild object from the Discord API of the current guild.
+
+
 ### Record
-`classes.record`
+`classes.Record`
 
 Represents a record in a table
 
 Properties:
- - `record.message`: A dict representing a Message object from the Discord API. Mainly for internal use.
- - `record.table`: A Table object representing the Table this record belongs to.
- - `record.created_at`: An ISO8601 timestamp of when the record was created.
- - `record.updated_at`: An ISO8601 timestamp of when the record was updated.
- - `record.data`: A dictionary containing the data held in the record. Example: 
+ - `Record.message`: A dict representing a Message object from the Discord API. Mainly for internal use.
+ - `Record.table`: A Table object representing the Table this record belongs to.
+ - `Record.created_at`: An ISO8601 timestamp of when the record was created.
+ - `Record.updated_at`: An ISO8601 timestamp of when the record was updated.
+ - `Record.data`: A dictionary containing the data held in the record. Example: 
 ```
 {
     "field_name_1": "field_value",
@@ -80,37 +95,37 @@ Properties:
 }
 ```
 Methods:
- - `record.update_field("field_name", "new_field_value")`: Updates the specified field and sets it to the new value. Returns the new Record instance for call chaining.
- - `record.delete()`: Deletes the Record Permanently.
+ - `Record.update_field("field_name", "new_field_value")`: Updates the specified field and sets it to the new value. Returns the new Record instance for call chaining.
+ - `Record.delete()`: Deletes the Record Permanently.
 
 ### Table
-`classes.table`
+`classes.Table`
 
 Represents a Table containing Records in a Database
 
 Properties:
- - `record.channel`: A dict representing a Channel object from the Discord API. Mainly for internal use.
- - `table.database`: A Database object representing the Database this Table belongs to.
- - `table.created_at`: An ISO8601 timestamp of when the Table was created.
- - `table.records`: A list of Record objects from the Table
+ - `Table.channel`: A dict representing a Channel object from the Discord API. Mainly for internal use.
+ - `Table.database`: A Database object representing the Database this Table belongs to.
+ - `Table.created_at`: An ISO8601 timestamp of when the Table was created.
+ - `Table.records`: A list of Record objects from the Table
 Methods:
- - `table.get_records(field_name="field_value", field_name_2="second_filter_value")`: Finds records from the Table with the specified filters. Returns a list of Record objects, even if only a single record is returned. May be an empty list.
- - `table.update_records("field_name_to_update", "new_value", field_name="field_value", field_name_2="second_filter_value")`: Updates the specified field name to the new value. kwargs are filters. Can update multiple records. Returns a list of updated Record objects. May be an empty list.
- - `table.create_record(field_value_1, field_value_2...)`: Creates a new Record in a Table. Returns a Record object. Expects the same amount of positional args as there are fields in a database, with each posarg corresponding to a field.
+ - `Table.get_records(field_name="field_value", field_name_2="second_filter_value")`: Finds records from the Table with the specified filters. Returns a list of Record objects, even if only a single record is returned. May be an empty list.
+ - `Table.update_records("field_name_to_update", "new_value", field_name="field_value", field_name_2="second_filter_value")`: Updates the specified field name to the new value. kwargs are filters. Can update multiple records. Returns a list of updated Record objects. May be an empty list.
+ - `Table.create_record(field_value_1, field_value_2...)`: Creates a new Record in a Table. Returns a Record object. Expects the same amount of positional args as there are fields in a database, with each posarg corresponding to a field.
 
 ### Database
-`classes.database`
+`classes.Database`
 
 Represents a Database
 
 Properties:
- - `record.category`: A dict representing a Category object from the Discord API. Mainly for internal use.
- - `database.created_at`: An ISO8601 timestamp of when the Database was created.
- - `database.tables`: A list of Table objects, one for each Table in the database. May be an empty list.
+ - `Database.category`: A dict representing a Category object from the Discord API. Mainly for internal use.
+ - `Database.created_at`: An ISO8601 timestamp of when the Database was created.
+ - `Database.tables`: A list of Table objects, one for each Table in the database. May be an empty list.
 Methods:
- - `database.create_table("name", ["list", "of", "field", "names"])`: Creates a new Table in the database.
- - `database.remove_table("name")`: Deletes a Table permanently.
- - `database.get_table("name")`: Returns the Table object from that Database with the name.
+ - `Database.create_table("name", ["list", "of", "field", "names"])`: Creates a new Table in the database.
+ - `Database.remove_table("name")`: Deletes a Table permanently.
+ - `Database.get_table("name")`: Returns the Table object from that Database with the name.
  
 ## Exceptions
 ### Global Exceptions
