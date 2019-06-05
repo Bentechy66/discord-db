@@ -15,8 +15,6 @@ Each Database (Category) may hold up to 50 Tables (Channels).
 
 Categories will be named to the name of the Database.
 
-Within each Category, there may be up to 50 Tables (Channels).
-
 Channels will be named to the name of the Table.
 
 Within the Channels there will be messages representing records in the database
