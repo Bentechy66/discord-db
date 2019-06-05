@@ -27,13 +27,3 @@ class DiscordDB:
         created_channel = self.discord_interface.discord_post(f"guilds/{self.guild_id}/channels", channel_object)
 
         return None  # TODO: Make it return a Database() object
-
-
-def connect(token, id):
-    """
-    For added memery, allows for sqlite-like syntax
-    :param token: The Discord Token
-    :param id: The Guild ID
-    :return: DiscordDB Object
-    """
-    return DiscordDB(token, id)
