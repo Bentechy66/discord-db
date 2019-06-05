@@ -67,7 +67,11 @@ pin_type number can be:
 `classes.QueueAction`
 
 An action to be performed in the commit queue. You should not have to interface with this class.
-Thus, this class is only documented in the source code.
+
+`type_index` can be one of the following:
+ - `0`: This is for a create_database action
+ - `1`: This is for a create_table action
+ - `2`: This is for a create_record action
 
 ### DiscordDB
 `classes.DiscordDB`
@@ -77,11 +81,14 @@ The main DiscordDB class.
 Properties:
  - `DiscordDB.discord_token`: The Discord token used to initialise the DB
  - `DiscordDB.guild_id`: The ID of the Guild used to initialise the DB
+ - `DiscordDB.queue`: A list of QueueAction objects to be evaluated upon `self.commit()`
+
 Methods:
  - `DiscordDB.create_database("name")"`: Creates an empty database
  - `DiscordDB.delete_database("name")`: Irreversibly deletes a database
  - `DiscordDB.get_databases()`: Gets a list of Database objects
  - `DiscordDB.get_guild()`: Returns a Guild object from the Discord API of the current guild.
+ - `DiscordDB.commit()`: Commits all the actions to discord. May take a while to complete
 
 
 ### Record
