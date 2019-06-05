@@ -1,5 +1,5 @@
-[login]
+[Login]
 discord_token = "" # The token for the bot account that we want to log in with
 
-[guild]
+[Guild]
 guild_id = 000000000000000000 # The ID of the guild (server) to use as the database
