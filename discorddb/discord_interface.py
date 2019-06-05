@@ -40,13 +40,3 @@ class DiscordInterface:
             raise Discord403Exception(f"The Discord Gateway returned a 403 response. \nResponse: {r.text}")
 
         return loads(r.text)  # Return the request response, parsed as JSON
-
-    # -----------------
-    # Utility functions
-    # -----------------
-
-    def send_message(self, channel_id, message_content):
-        message_object = {
-            "content": message_content
-        }
-        self.discord_post(f"channels/{channel_id}/messages", message_object)
