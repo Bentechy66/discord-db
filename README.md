@@ -4,15 +4,14 @@ The World's Worst Database System™
 *Yes, I'm aware this was a terrible idea. I got incredibly bored one time and this happened.*
 
 # Setup / Usage
-- Clone the repo: `git clone https://github.com/bentechy66/discord-db`
-- CD into the git repo: `cd discord-db`
-- Copy `config.ini.example` to `discord-db/config.ini`: `cp ./config.ini.example ./discord-db/config.ini`
-- Edit config file to your liking: `vim ./discord-db/config.ini`
-- To use the library, import `./discord-db/discord-db.py`: 
 ```python3
-from discord-db import discord-db
+import discorddb
 
-discord-db.library_functions()
+guild_db = discorddb.connect(bot_token, guild_id)
+
+guild_db.create_database()
+guild_db.x()
+[...]
 ```
 
 # Important Note
