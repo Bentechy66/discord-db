@@ -62,8 +62,15 @@ pin_type number can be:
 
 ## Library Classes
 *The following section, as with the rest of this document, is still under development. Static properties may be changed to get_x() methods*
+
+###QueueAction
+`classes.QueueAction`
+
+An action to be performed in the commit queue. You should not have to interface with this class.
+Thus, this class is only documented in the source code.
+
 ### DiscordDB
-`main.DiscordDB`
+`classes.DiscordDB`
 
 The main DiscordDB class.
 
