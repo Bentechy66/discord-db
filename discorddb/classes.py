@@ -1,7 +1,13 @@
 from .discord_interface import DiscordInterface
+from .exceptions import NameExistsException
 
 
 class DiscordDB:
+
+    # ---------
+    # Internals
+    # ---------
+
     def __init__(self, discord_token, guild_id):
         """
         DiscordDB Constructor
@@ -45,6 +51,8 @@ class DiscordDB:
                 }
                 self.discord_interface.discord_post(f"guilds/{self.guild_id}/channels", channel_object)
 
+        self.update_channel_cache()
+
     def update_channel_cache(self):
         """
         Updates the local cache of channels used to verify names etc
@@ -54,6 +62,10 @@ class DiscordDB:
         channel_objects = self.discord_interface.discord_get(f"guilds/{self.guild_id}/channels")
         self.channel_cache = channel_objects
 
+    # ---------------------
+    # User-friendly methods
+    # ---------------------
+
     def create_database(self, database_name):
         """
         Creates a database (category) in the Guild.
@@ -61,6 +73,17 @@ class DiscordDB:
         :param database_name: The name of the database (category)
         :return: a QueueAction object
         """
+
+        for channel_object in self.channel_cache:  # Check name doesn't already exist
+            if channel_object["name"] == database_name:
+                raise NameExistsException("Database name already exists either as a Database or Table")
+
+        channel_object = {  # Temporary object to ensure you can't create another database with the same name
+            "name": database_name,
+            "temp": True
+        }
+
+        self.channel_cache.append(channel_object)
 
         return self.append_queue_action(0, [database_name])
 

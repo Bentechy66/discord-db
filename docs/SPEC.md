@@ -145,6 +145,8 @@ Methods:
 Thrown when the Discord API returns a 404.
 #### Discord403Exception
 Thrown when the Discord API returns a 403.
+#### NameExistsException
+Thrown when trying to create an entity with a name that already exists elsewhere in the db.
 ### Record Exceptions
 #### DataTooLongException
 Thrown when `update_field` is given too much data for a single Discord message.
@@ -160,8 +162,6 @@ Thrown when `get_table` cannot find a table with the specified name.
 Thrown when `create_table` fails because there are already 50 Tables in a Database.
 #### TooLongFieldNamesException
 Thrown when `create_table` fails because, combined and with commas, the list of field names are over 2000 chars long.
-#### TableExistsException
-Thrown when `create_table` fails because the database name already exists in the Table.
 
 ## TODOs
 Validation of arguments
