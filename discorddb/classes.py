@@ -1,5 +1,5 @@
 from .discord_interface import DiscordInterface
-from .exceptions import NameExistsException
+from .exceptions import InvalidNameException
 
 
 class DiscordDB:
@@ -76,7 +76,7 @@ class DiscordDB:
 
         for channel_object in self.channel_cache:  # Check name doesn't already exist
             if channel_object["name"] == database_name:
-                raise NameExistsException("Database name already exists either as a Database or Table")
+                raise InvalidNameException("Name already exists either as a Database or Table")
 
         channel_object = {  # Temporary object to ensure you can't create another database with the same name
             "name": database_name,

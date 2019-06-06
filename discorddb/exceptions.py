@@ -25,5 +25,5 @@ class TooLongFieldNamesException(Exception):
     pass  # No further functionality required
 
 
-class NameExistsException(Exception):
+class InvalidNameException(Exception):
     pass  # No further functionality required

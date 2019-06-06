@@ -145,7 +145,7 @@ Methods:
 Thrown when the Discord API returns a 404.
 #### Discord403Exception
 Thrown when the Discord API returns a 403.
-#### NameExistsException
+#### InvalidNameException
 Thrown when trying to create an entity with a name that already exists elsewhere in the db.
 ### Record Exceptions
 #### DataTooLongException
