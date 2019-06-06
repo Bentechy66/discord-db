@@ -14,11 +14,22 @@ class DiscordDB:
         self.guild_id = guild_id
         self.discord_interface = DiscordInterface(self.discord_token)
 
-        self.queue = []
+        self.action_queue = []
 
         # Get discord channels and cache them
         self.channel_cache = []
         self.update_channel_cache()
+
+    def append_queue_action(self, type_index, arg_array):
+        """
+
+        :param type_index:
+        :param arg_array:
+        :return: The added QueueAction object
+        """
+        queue_object = QueueAction(type_index, arg_array)
+        self.action_queue.append(queue_object)
+        return queue_object
 
     def commit(self):
         """
@@ -26,7 +37,13 @@ class DiscordDB:
 
         :return: None
         """
-        pass
+        for action in self.action_queue:
+            if action.type == 0:  # Database Create request
+                channel_object = {  # The channel used as the "Database"
+                    "name": action.args[0],
+                    "type": 4
+                }
+                self.discord_interface.discord_post(f"guilds/{self.guild_id}/channels", channel_object)
 
     def update_channel_cache(self):
         """
@@ -44,20 +61,18 @@ class DiscordDB:
         :param database_name: The name of the database (category)
         :return: a QueueAction object
         """
-        channel_object = {  # The channel used as the "Database"
-            "name": database_name,
-            "type": 4
-        }
-        created_channel = self.discord_interface.discord_post(f"guilds/{self.guild_id}/channels", channel_object)
 
-        return None  # TODO: Make it return a Database() object
+        return self.append_queue_action(0, [database_name])
 
 
 class QueueAction:
-    def __init__(self, type_index, action_object):
+    def __init__(self, type_index, arg_array=[]):
         """
         Constructor for QueueAction
 
         :param type_index: The index of the type of action to be performed. See SPEC.md
-        :param action_object: The object to take action upon.
+        :param arg_array: An array of args to act upon depending on type_index.
+        :return: QueueAction object
         """
+        self.type = type_index
+        self.args = arg_array
