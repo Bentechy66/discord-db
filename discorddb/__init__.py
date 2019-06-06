@@ -7,11 +7,11 @@ Consider yourself warned"""
 from .classes import *
 
 
-def connect(token, id):
+def connect(token, discord_id):
     """
     For added memery, allows for sqlite-like syntax
     :param token: The Discord Token
-    :param id: The Guild ID
+    :param discord_id: The Guild ID
     :return: DiscordDB Object
     """
-    return DiscordDB(token, id)
+    return DiscordDB(token, discord_id)
