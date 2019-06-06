@@ -1,3 +1,4 @@
 .idea/
 \.idea/
 discorddb/config.ini
+*.pyc
