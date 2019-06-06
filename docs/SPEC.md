@@ -67,9 +67,10 @@ pin_type number can be:
 An action to be performed in the commit queue. You should not have to interface with this class.
 
 `type_index` can be one of the following:
- - `0`: This is for a create_database action
- - `1`: This is for a create_table action
- - `2`: This is for a create_record action
+ - `0`: This is for a `create_database` action
+ - `1`: This is for a `delete_database` action
+ - `2`: This is for a `create_table` action
+ - `3`: This is for a `delete_table` action
 
 ### DiscordDB
 `classes.DiscordDB`
