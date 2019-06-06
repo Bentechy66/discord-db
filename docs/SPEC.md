@@ -162,3 +162,6 @@ Thrown when `create_table` fails because there are already 50 Tables in a Databa
 Thrown when `create_table` fails because, combined and with commas, the list of field names are over 2000 chars long.
 #### TableExistsException
 Thrown when `create_table` fails because the database name already exists in the Table.
+
+## TODOs
+Validation of arguments
